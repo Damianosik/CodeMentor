@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeMentor - Nauka i Analiza Kodu</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <a href="#" class="logo" onclick="showPage('chat'); return false;">
+            <img src="favicon.png" alt="CodeMentor Logo" class="logo-icon">
+            <span>Code<span class="logo-accent">Mentor</span></span>
+        </a>
+        <nav class="nav-links">
+            <button class="nav-btn active" data-page="chat">Czat</button>
+            <button class="nav-btn" data-page="linter">Analizator</button>
+            <button class="nav-btn" data-page="roadmap">Mapa Nauki</button>
+            <button class="nav-btn" data-page="progress">Mój Postęp</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- STRONA 1: CZAT Z MENTOREM -->
+        <section id="chat-page" class="page active">
+            <div class="page-header">
+                <h1>💬 Czat z Mentorem</h1>
+                <div class="mode-switch">
+                    <label>
+                        <input type="checkbox" id="project-mode-toggle">
+                        Tryb: Naucz się swojego projektu
+                    </label>
+                    <button id="open-help-modal" class="btn-secondary" type="button">?</button>
+                </div>
+            </div>
+
+            <div id="project-banner" class="project-banner hidden">
+                <span id="project-step-label">Krok 1: Szkielet HTML</span>
+                <button id="project-hint-btn" class="btn-secondary" type="button">Podpowiedź</button>
+            </div>
+
+            <div id="chat-history" class="chat-history"></div>
+
+            <form id="chat-form" class="chat-input-bar">
+                <textarea id="chat-input" rows="2" placeholder="Zadaj pytanie lub wklej fragment kodu..."></textarea>
+                <button type="submit" class="btn-primary">Wyślij</button>
+            </form>
+        </section>
+
+        <!-- STRONA 2: ANALIZATOR KODU -->
+        <section id="linter-page" class="page">
+            <div class="page-header">
+                <h1>🔍 Analizator Błędów i Statystyk</h1>
+            </div>
+
+            <div class="linter-controls">
+                <label for="code-lang">Język:</label>
+                <select id="code-lang">
+                    <option value="js">JavaScript</option>
+                    <option value="html">HTML</option>
+                    <option value="css">CSS</option>
+                </select>
+                <input type="file" id="code-file-input" accept=".js,.html,.css" multiple>
+            </div>
+
+            <textarea id="linter-input" class="code-textarea" placeholder="Wklej tutaj swój kod..."></textarea>
+
+            <div class="linter-actions">
+                <button id="analyze-btn" class="btn-primary" type="button">Analizuj kod</button>
+            </div>
+
+            <div id="code-stats" class="code-stats hidden">
+                <h3>📊 Statystyki kodu</h3>
+                <div class="stats-bar" id="stats-bar"></div>
+                <div class="stats-details" id="stats-details"></div>
+            </div>
+
+            <div id="linter-results" class="linter-results"></div>
+        </section>
+
+        <!-- STRONA 3: MAPA NAUKI -->
+        <section id="roadmap-page" class="page">
+            <div class="page-header">
+                <h1>🗺️ Mapa Nauki</h1>
+                <span id="roadmap-progress-text" class="badge">Ukończono: 0%</span>
+            </div>
+            <div id="roadmap-list" class="roadmap-list"></div>
+        </section>
+
+        <!-- STRONA 4: MÓJ POSTĘP -->
+        <section id="progress-page" class="page">
+            <div class="page-header">
+                <h1>📔 Mój Postęp</h1>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-value" id="stat-analyses">0</span>
+                    <span class="stat-label">Przeanalizowane kody</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="stat-errors">0</span>
+                    <span class="stat-label">Wykryte błędy</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="stat-topics">0/5</span>
+                    <span class="stat-label">Ukończone tematy</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value stat-date" id="stat-last-active">-</span>
+                    <span class="stat-label">Ostatnia aktywność</span>
+                </div>
+            </div>
+
+            <h2>Historia analiz</h2>
+            <ul id="analysis-history" class="history-list"></ul>
+        </section>
+    </main>
+
+    <!-- MODAL: INSTRUKCJA ZAPYTAJ MENTORA -->
+    <div id="mentor-modal" class="modal hidden">
+        <div class="modal-content">
+            <button id="close-modal" class="modal-close" type="button">&times;</button>
+            <h2>💡 Jak pytać Mentora?</h2>
+            <ul>
+                <li>Opisz krótko, co próbujesz osiągnąć.</li>
+                <li>Wklej fragment kodu, który sprawia problem.</li>
+                <li>Włącz <strong>Tryb: Naucz się swojego projektu</strong>, aby budować aplikację krok po kroku bez gotowców.</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 CodeMentor. Wszelkie prawa zastrzeżone.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
